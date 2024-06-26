@@ -54,3 +54,16 @@ BEGIN
     SELECT name, email, auth_type FROM users;
 END$$
 DELIMITER ;
+
+
+-- stored function untuk mengambil semua kategori modul
+DELIMITER //
+CREATE FUNCTION get_all_module_category() RETURNS VARCHAR(255)
+BEGIN
+  DECLARE result TEXT;
+  SELECT GROUP_CONCAT(CONCAT('Kategori: ', category) SEPARATOR '  ')
+  INTO result
+  FROM modules;
+  RETURN result;
+END//
+DELIMITER ;
